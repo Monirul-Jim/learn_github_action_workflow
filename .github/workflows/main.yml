@@ -13,14 +13,27 @@
             
 
 
-name: Schedule Job
-on:
-    schedule:
-        - cron: "0 0 * * *"
-jobs:
-    run-script:
-        runs-on: ubuntu-latest
+# name: Schedule Job
+# on:
+#     schedule:
+#         - cron: "0 0 * * *"
+# jobs:
+#     run-script:
+#         runs-on: ubuntu-latest
             
+#         steps:
+#             - name : Print Message
+#               run : echo "The scheduled job is running"
+name: Disabled Workflow Video
+on:
+    push:
+        branches: [main]
+
+
+jobs:
+    disable: 
+        runs-on: ubuntu-latest
+
         steps:
-            - name : Print Message
-              run : echo "The scheduled job is running"
+            - name : Disabled Workflow
+              run : echo "The job is disabled"
