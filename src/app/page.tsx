@@ -59,6 +59,7 @@ export default function Home() {
             Documentation
           </a>
         </div>
+        <h1>Next js is a powerfull framework</h1>
       </main>
     </div>
   );
