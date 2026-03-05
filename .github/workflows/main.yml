@@ -1,29 +1,23 @@
-name: Next Js Build With Caching & Artifacts
+name: Deploy Next Js App
 on:
-    push:
-        branches: [main]
+  push:
+    branches: [main]
+
 jobs:
-    build:
-        runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout Repository
-              uses: actions/checkout@v6.0.2
+    concurrency: 
+      group: deploy
+      cancel-in-progress: true
 
-            - name: Setup Node Js
-              uses: actions/setup-node@v6.3.0
-              with:
-                node-version: 22.x
-                cache: 'npm'
+    steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v6.0.2
+        - name : Install Dependencies
+          run : npm install
+        - name: Build Next.js App
+          run: npm run build
 
-            - name: Install Dependencies
-              run : npm install
-            
-            - name: Build Next Js App
-              run : npm run build
-
-            - name: Upload Build on Artifacts
-              uses: actions/upload-artifact@v7.0.0
-              with:
-                name: nextjs-build
-                path: out/
+        - name: Deploy App
+          run: echo "Deploying App..."
